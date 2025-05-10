@@ -19,7 +19,7 @@
     @livewireStyles
 </head>
 
-<body class="font-sans antialiased">
+<body class="font-sans antialiased bg-white dark:bg-gray-800">
 
 
     @include('layouts.partial.admin.navigation')

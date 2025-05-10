@@ -21,9 +21,16 @@
             'route' => 'admin.bitacora.index',
             'active' => request()->routeIs('admin.bitacora.*'),
         ],
-        // [
-        //     'header' => 'Management',
-        // ],
+        [
+            'header' => 'Evaluaciones',
+        ],
+        [
+            'name' => 'Area Conocimiento',
+            'icon' => 'fa-solid fa-brain',
+            'route' => 'admin.conocimiento.index',
+            'active' => request()->routeIs('admin.conocimiento.*'),
+        ],
+
     ];
 @endphp
 
