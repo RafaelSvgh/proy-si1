@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Conocimiento extends Model // modelo el cual va acceder a ciertos atributos de la base de datos
+class Permiso extends Model
 {
     protected $fillable = [
         'nombre',

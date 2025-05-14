@@ -22,6 +22,18 @@
             'active' => request()->routeIs('admin.bitacora.*'),
         ],
         [
+            'name' => 'Permisos',
+            'icon' => 'fa-solid fa-screwdriver-wrench',
+            'route' => 'admin.permiso.index',
+            'active' => request()->routeIs('admin.permiso.*')
+        ],
+        [
+            'name' => 'Roles',
+            'icon' => 'fa-solid fa-person',
+            'route' => 'admin.rol.index',
+            'active' => request()->routeIs('admin.rol.*')
+        ],
+        [
             'header' => 'Evaluaciones',
         ],
         [
