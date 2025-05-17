@@ -18,16 +18,16 @@ class RolesAndPermissionsSeeder extends Seeder
 
         $permissions = ['create-posts', 'edit-posts', 'delete-posts', 'view-dashboard'];
         foreach ($permissions as $permission) {
-            Permission::firstOrCreate(['name' => $permission]);
+            Permission::firstOrCreate(['name' => $permission, 'guard_name' => 'web']);
         }
 
-        $admin = Role::firstOrCreate(['name' => 'admin']);
+        $admin = Role::firstOrCreate(['name' => 'admin', 'guard_name' => 'web']);
         $admin->givePermissionTo($permissions);
 
-        $reclutador = Role::firstOrCreate(['name' => 'reclutador']);
+        $reclutador = Role::firstOrCreate(['name' => 'reclutador', 'guard_name' => 'web']);
         $reclutador->givePermissionTo(['create-posts', 'edit-posts']);
 
-        $candidato = Role::firstOrCreate(['name' => 'candidato']);
+        $candidato = Role::firstOrCreate(['name' => 'candidato', 'guard_name' => 'web']);
         $candidato->givePermissionTo(['view-dashboard']);
     }
 }

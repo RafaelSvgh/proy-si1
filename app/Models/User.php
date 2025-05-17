@@ -69,6 +69,16 @@ class User extends Authenticatable
     }
 
 
+    public function administrador(){
+        return $this->hasOne(Administrador::class);
+    }
+
+    public function deleteAdministrador(){
+        if ($this->administrador){
+            $this->administrador->delete();
+        }
+    }
+
     public function candidato()
     {
         return $this->hasOne(Candidato::class);
