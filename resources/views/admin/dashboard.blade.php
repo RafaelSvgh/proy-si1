@@ -1,3 +1,7 @@
 <x-admin-layout>
-    Bienvenido al panel administrativo de la aplicación.
+    <div>
+        <h2 class="text-lg font-semibold">
+            Bienvenido, {{ auth()->user()->name }}
+        </h2>
+    </div>
 </x-admin-layout>
