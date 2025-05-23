@@ -91,16 +91,18 @@ class User extends Authenticatable
 
     public function deleteReclutador()
     {
+        if ($this->reclutador) {
+            $this->reclutador()->delete();
+        }
+    }
+    
+    public function deleteCandidato()
+    {
         if ($this->candidato) {
             $this->candidato()->delete();
         }
     }
 
-    public function deleteCandidato()
-    {
-        if ($this->reclutador) {
-            $this->reclutador()->delete();
-        }
-    }
+    
 
 }
