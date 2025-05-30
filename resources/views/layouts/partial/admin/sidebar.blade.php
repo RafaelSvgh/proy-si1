@@ -1,5 +1,5 @@
 @php
-    $links = [
+    $links = array_filter([
         [
             'name' => 'Dashboard',
             'icon' => 'fa-solid fa-house',
@@ -9,30 +9,36 @@
         [
             'header' => 'Usuarios',
         ],
-        [
+        auth()->user()->hasRole('admin') ? [
             'name' => 'Usuarios',
             'icon' => 'fa-solid fa-user',
             'route' => 'admin.users.index',
             'active' => request()->routeIs('admin.users.*'),
-        ],
+        ] : null,
         [
-            'name' => 'Bitácora',
-            'icon' => 'fa-solid fa-book',
-            'route' => 'admin.bitacora.index',
-            'active' => request()->routeIs('admin.bitacora.*'),
+            'name' => 'Candidatos',
+            'icon' => 'fa-solid fa-users',
+            'route' => 'admin.candidato.index',
+            'active' => request()->routeIs('admin.candidato.*'),
         ],
-        [
+        auth()->user()->hasRole('admin') ? [
+        'name' => 'Bitácora',
+        'icon' => 'fa-solid fa-book',
+        'route' => 'admin.bitacora.index',
+        'active' => request()->routeIs('admin.bitacora.*'),
+        ] : null,
+        auth()->user()->hasRole('admin') ? [
             'name' => 'Permisos',
             'icon' => 'fa-solid fa-screwdriver-wrench',
             'route' => 'admin.permiso.index',
             'active' => request()->routeIs('admin.permiso.*')
-        ],
-        [
+        ] : null,
+        auth()->user()->hasRole('admin') ? [
             'name' => 'Roles',
             'icon' => 'fa-solid fa-person',
             'route' => 'admin.rol.index',
             'active' => request()->routeIs('admin.rol.*')
-        ],
+        ] : null,
         [
             'header' => 'Evaluaciones',
         ],
@@ -42,8 +48,9 @@
             'route' => 'admin.conocimiento.index',
             'active' => request()->routeIs('admin.conocimiento.*'),
         ],
+        
 
-    ];
+    ]);
 @endphp
 
 <aside id="logo-sidebar"

@@ -28,24 +28,39 @@ class UserUpdate extends Component
 
     protected $rules = [
         'nombre' => 'required|string|max:255',
-        'telefono' => 'required|string|min:8|max:15',
-        'correo' => 'required|email',
+        'telefono' => 'required|numeric|digits_between:8,15',
+        'correo' => 'required|email|unique:users,email',
         'password' => [
             'required',
             'min:8',
-            // 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
+            //'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
         ],
         'password_confirmation' => 'required|same:password',
         'rol' => 'required|in:admin,reclutador,candidato',
     ];
 
     protected $messages = [
-        'password.confirmed' => 'Las contraseñas no coinciden.',
-        'password.required' => 'La contraseña es obligatoria.',
+        'nombre.required' => 'El campo nombre es obligatorio.',
+        'nombre.string' => 'El campo nombre debe ser una cadena de texto.',
+        'nombre.max' => 'El nombre no debe exceder los 255 caracteres.',
+        
+        'telefono.required' => 'El campo teléfono es obligatorio.',
+        'telefono.numeric' => 'El campo teléfono debe contener solo números.',
+        'telefono.digits_between' => 'El campo teléfono debe tener entre 8 y 15 dígitos.',
+
+        'correo.required' => 'El campo correo es obligatorio.',
+        'correo.email' => 'El correo electrónico debe tener un formato válido.',
+        'correo.unique' => 'Este correo ya está registrado.',
+
+        'password.required' => 'El campo contraseña es obligatorio.',
         'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
-        'password_confirmation.required' => 'La confirmación de la contraseña es obligatoria.',
+        'password.regex' => 'La contraseña debe contener al menos una mayúscula, una minúscula, un número y un carácter especial.',
+
+        'password_confirmation.required' => 'Debe confirmar la contraseña.',
         'password_confirmation.same' => 'Las contraseñas no coinciden.',
-        'password.regex' => 'La contraseña debe contener al menos una mayúscula, minúscula, número y símbolo.',
+
+        'rol.required' => 'El campo rol es obligatorio.',
+        'rol.in' => 'El rol seleccionado no es válido. Debe ser admin, reclutador o candidato.',
     ];
 
     public function updated($propertyName)

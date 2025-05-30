@@ -3,8 +3,10 @@
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PermisoController;
 use App\Http\Controllers\Admin\RolController;
+use App\Http\Controllers\Admin\CandidatoController;
 use App\Http\Controllers\Admin\ConocimientoController;
 use App\Http\Controllers\BitacoraController;
+use App\Http\Controllers\Reclutador\ReclutadorController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -36,6 +38,12 @@ Route::delete('permiso-destroy/{id}', [PermisoController::class, 'destroy'])->na
 
 //ruta Rol
 Route::resource('rol', RolController::class);
+
+//ruta Reclutador
+Route::get('reclutador', [ReclutadorController::class, 'index'])->name('reclutador.index');
+
+//ruta Candidato
+Route::resource('candidato', CandidatoController::class);
 
 // get -> solo muestra datos
 // post -> 

@@ -1,29 +1,30 @@
 <?php
 
-namespace App\Livewire\Admin\User;
+namespace App\Livewire\Admin\Candidato;
 
-use App\Models\Candidato;
-use App\Models\Reclutador;
-use App\Models\User;
+use Livewire\Component;
 use App\Traits\FuncionesGlobales;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rules\Can;
-use Livewire\Component;
+use App\Models\User;
+use App\Models\Candidato;
 
-class UserCreate extends Component
+class CandidatoUpdate extends Component
 {
     use FuncionesGlobales;
 
-    public $nombre = '';
-    public $telefono = '';
-    public $correo = '';
-    public $password = '';
-    public $password_confirmation = '';
-    public $rol = 'candidato';
-    public $departamento = '';
-    public $direccion = '';
-    public $toggleEstado = true;
-    
+    public $nombre, $telefono, $correo, $password, $password_confirmation, $rol, $direccion;
+    public $userId, $candidatoId;
+    public function mount($user, $candidato)
+    {
+        $this->nombre = $user->name;
+        $this->telefono = $user->telefono;
+        $this->correo = $user->email;
+        $this->rol = $user->getRoleNames()->first();
+        $this->userId = $user->id;
+        $this->candidatoId = $candidato->id;
+        $this->direccion = $candidato ? $candidato->direccion : '';
+    }
+
     protected $rules = [
         'nombre' => 'required|string|max:255',
         'telefono' => 'required|numeric|digits_between:8,15',
@@ -35,6 +36,7 @@ class UserCreate extends Component
         ],
         'password_confirmation' => 'required|same:password',
         'rol' => 'required|in:admin,reclutador,candidato',
+        'direccion' => 'required|string|max:255',
     ];
 
     protected $messages = [
@@ -59,6 +61,10 @@ class UserCreate extends Component
 
         'rol.required' => 'El campo rol es obligatorio.',
         'rol.in' => 'El rol seleccionado no es válido. Debe ser admin, reclutador o candidato.',
+
+        'direccion.required' => 'El campo dirección es obligatorio.',
+        'direccion.string' => 'El campo dirección debe ser una cadena de texto.',
+        'direccion.max' => 'La dirección no debe exceder los 255 caracteres.',
     ];
 
     public function updated($propertyName)
@@ -66,43 +72,28 @@ class UserCreate extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function save(Request $request)
+    public function update(Request $request)
     {
         $this->validate();
-
-        // Aquí puedes guardar el usuario en la base de datos
-        $user = User::create([
+        $candidato = Candidato::find($this->candidatoId);
+        $user = User::find($this->userId);
+        $user->update([
             'name' => $this->nombre,
             'telefono' => $this->telefono,
             'email' => $this->correo,
             'password' => bcrypt($this->password),
-            'estado' => $this->toggleEstado ? 'A' : 'I',
         ]);
+        $candidato->update([
+            'direccion' => $this->direccion,
+        ]);
+        $this->cargarABitacora($request, 'Actualización de un candidato ', 'users', $user->id);
 
-        if ($this->rol == 'candidato') {
-            Candidato::create([
-                'direccion' => $this->direccion,
-                'user_id' => $user->id,
-            ]);
-        }
-        if ($this->rol == 'reclutador') {
-            Reclutador::create([
-                'departamento' => $this->departamento,
-                'user_id' => $user->id,
-            ]);
-        }
-
-        $user->assignRole($this->rol);
-
-        $this->cargarABitacora($request, 'Creación de un nuevo usuario con rol ' . $this->rol, 'users', $user->id);
-
-        session()->flash('message', 'Usuario creado correctamente.');
+        session()->flash('message', 'Candidato actualizado correctamente.');
         $this->reset();
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.candidato.index');
     }
     public function render()
     {
-
-        return view('livewire.admin.user.user-create');
+        return view('livewire.admin.candidato.candidato-update');
     }
 }
