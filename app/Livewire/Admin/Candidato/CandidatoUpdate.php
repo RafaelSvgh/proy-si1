@@ -28,7 +28,7 @@ class CandidatoUpdate extends Component
     protected $rules = [
         'nombre' => 'required|string|max:255',
         'telefono' => 'required|numeric|digits_between:8,15',
-        'correo' => 'required|email|unique:users,email',
+        'correo' => 'required|email|',
         'password' => [
             'required',
             'min:8',

@@ -119,7 +119,10 @@
                                                 Administre eficientemente la base de datos de candidatos. Registre, busque y filtre perfiles según sus necesidades. Mantenga un seguimiento detallado de cada candidato en el proceso de selección.
                                             </p>
                                         </div>
+
+                                        
                                     </div>
+                                     
 
                                     <svg class="size-6 shrink-0 stroke-manpower" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg>
                                 </div>
@@ -136,7 +139,7 @@
                                 </div>
 
                                 <div class="pt-3 sm:pt-5">
-                                    <h2 class="text-xl font-semibold text-black">Gestión de Vacantes</h2>
+                                    <h2 class="text-xl font-semibold text-black">Gestión de Usuarios y Acceso</h2>
 
                                     <p class="mt-4 text-sm/relaxed">
                                         Cree y administre vacantes con todos los detalles necesarios. Establezca requisitos, responsabilidades y beneficios. Vincule candidatos a las vacantes y realice un seguimiento del proceso de selección.
@@ -157,15 +160,17 @@
                                 </div>
 
                                 <div class="pt-3 sm:pt-5">
-                                    <h2 class="text-xl font-semibold text-black">Programación de Entrevistas</h2>
+                                    <h2 class="text-xl font-semibold text-black">Evaluacíon y Resultados</h2>
 
                                     <p class="mt-4 text-sm/relaxed">
-                                        Organice y programe entrevistas con los candidatos. Gestione el calendario de entrevistas, envíe notificaciones automáticas y registre los resultados de cada entrevista para una evaluación completa.
+                                        
                                     </p>
                                 </div>
 
                                 <svg class="size-6 shrink-0 self-center stroke-manpower" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg>
                             </a>
+
+                                      
 
                             <div class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-manpower lg:pb-10">
                                 <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-manpower/10 sm:size-16">
@@ -174,8 +179,10 @@
                                     </svg>
                                 </div>
 
+
+
                                 <div class="pt-3 sm:pt-5">
-                                    <h2 class="text-xl font-semibold text-black">Reportes y Estadísticas</h2>
+                                    <h2 class="text-xl font-semibold text-black">Notificación y Auditoría</h2>
 
                                     <p class="mt-4 text-sm/relaxed">
                                         Obtenga información valiosa sobre sus procesos de reclutamiento con reportes detallados. Analice tiempos de contratación, fuentes de reclutamiento efectivas, y métricas clave para optimizar sus estrategias.
@@ -183,6 +190,8 @@
                                 </div>
                             </div>
                         </div>
+
+                        
 
                         <div class="mt-12 text-center">
                             <a
