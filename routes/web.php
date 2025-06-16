@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\CandidatoController;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware('auth');
 
 Route::middleware([
     'auth:sanctum',
@@ -15,3 +17,7 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::get('inicio',[CandidatoController::class, 'welcome'])->name('candidato.welcome');
+Route::post('postular/{ofertaId}', [CandidatoController::class, 'postular'])->name('candidato.postular');
+

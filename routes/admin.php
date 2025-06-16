@@ -1,11 +1,14 @@
 <?php
 
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AreaController;
 use App\Http\Controllers\Admin\PermisoController;
+use App\Http\Controllers\Admin\OfertaController;
 use App\Http\Controllers\Admin\RolController;
 use App\Http\Controllers\Admin\ConocimientoController;
 use App\Http\Controllers\BitacoraController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegistroController;
 
 Route::get('/', function () {
     return view('admin.dashboard');
@@ -36,6 +39,20 @@ Route::delete('permiso-destroy/{id}', [PermisoController::class, 'destroy'])->na
 
 //ruta Rol
 Route::resource('rol', RolController::class);
+
+Route::resource('area', AreaController::class);
+
+Route::resource('oferta', OfertaController::class);
+
+Route::get('oferta/{oferta}/candidatos', [OfertaController::class, 'candidatos'])->name('oferta.candidatos');
+
+
+
+Route::post('register', [RegistroController::class, 'register'])->name('register.user');
+Route::post('login', [RegistroController::class, 'login'])->name('login.user');
+
+
+
 
 // get -> solo muestra datos
 // post -> 

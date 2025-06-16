@@ -42,6 +42,18 @@
             'route' => 'admin.conocimiento.index',
             'active' => request()->routeIs('admin.conocimiento.*'),
         ],
+        [
+            'name' => 'Areas',
+            'icon' => 'fa-solid fa-layer-group',
+            'route' => 'admin.area.index',
+            'active' => request()->routeIs('admin.area.*'),
+        ],
+        [
+            'name' => 'Ofertas',
+            'icon' => 'fa-solid fa-briefcase',
+            'route' => 'admin.oferta.index',
+            'active' => request()->routeIs('admin.oferta.*'),
+        ],
 
     ];
 @endphp
