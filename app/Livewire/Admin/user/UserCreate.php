@@ -23,6 +23,8 @@ class UserCreate extends Component
     public $departamento = '';
     public $direccion = '';
     public $toggleEstado = true;
+    public $cargo='';
+    public $descripcion='';
     
     protected $rules = [
         'nombre' => 'required|string|max:255',
@@ -37,14 +39,14 @@ class UserCreate extends Component
         'rol' => 'required|in:admin,reclutador,candidato',
 
         'cargo' => 'required|string|max:255',
-            'descripcion' => 'nullable|string',
-            'estado' => 'required|in:activo,inactivo', // ajusta si usas otros estados
-            'fecha_inicio' => 'required|date',
-            'fecha_fin' => 'nullable|date|after_or_equal:fecha_inicio',
-            'modalidad' => 'required|in:presencial,remoto,hibrido', // ajusta según tus modalidades
-            'salario_minimo' => 'required|numeric|min:0',
-            'salario_maximo' => 'required|numeric|gte:salario_minimo',
-            'area_id' => 'required|exists:areas,id', // asume que existe una tabla areas
+        'descripcion' => 'required|string',
+        'estado' => 'required|in:activo,inactivo', // ajusta si usas otros estados
+        'fecha_inicio' => 'required|date',
+        'fecha_fin' => 'required|date|after_or_equal:fecha_inicio',
+        'modalidad' => 'required|in:presencial,remoto,hibrido', // ajusta según tus modalidades
+        'salario_minimo' => 'required|numeric|min:0',
+        'salario_maximo' => 'required|numeric|gte:salario_minimo',
+        'area_id' => 'required|exists:areas,id', // asume que existe una tabla areas
     ];
 
     protected $messages = [
@@ -57,6 +59,8 @@ class UserCreate extends Component
         'correo.unique' => 'El correo ya está en uso.',
         
         'cargo.required' => 'El cargo es obligatorio.',
+
+        'descripcion.required' => 'La descripción es obligatoria.',
         
         'estado.in' => 'El estado debe ser activo o inactivo.',
         
@@ -64,7 +68,7 @@ class UserCreate extends Component
         
         'salario_maximo.gte' => 'El salario máximo debe ser mayor o igual al salario mínimo.',
         
-        'area_id.exists' => 'El área seleccionada no es válida.',
+        'area_id.exists' => 'El área seleccionada no es válida.',
     ];
 
     public function updated($propertyName)
