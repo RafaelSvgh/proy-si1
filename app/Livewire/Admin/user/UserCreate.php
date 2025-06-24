@@ -35,6 +35,16 @@ class UserCreate extends Component
         ],
         'password_confirmation' => 'required|same:password',
         'rol' => 'required|in:admin,reclutador,candidato',
+
+        'cargo' => 'required|string|max:255',
+            'descripcion' => 'nullable|string',
+            'estado' => 'required|in:activo,inactivo', // ajusta si usas otros estados
+            'fecha_inicio' => 'required|date',
+            'fecha_fin' => 'nullable|date|after_or_equal:fecha_inicio',
+            'modalidad' => 'required|in:presencial,remoto,hibrido', // ajusta según tus modalidades
+            'salario_minimo' => 'required|numeric|min:0',
+            'salario_maximo' => 'required|numeric|gte:salario_minimo',
+            'area_id' => 'required|exists:areas,id', // asume que existe una tabla areas
     ];
 
     protected $messages = [
@@ -45,6 +55,16 @@ class UserCreate extends Component
         'password_confirmation.same' => 'Las contraseñas no coinciden.',
         'password.regex' => 'La contraseña debe contener al menos una mayúscula, minúscula, número y símbolo.',
         'correo.unique' => 'El correo ya está en uso.',
+        
+        'cargo.required' => 'El cargo es obligatorio.',
+        
+        'estado.in' => 'El estado debe ser activo o inactivo.',
+        
+        'fecha_fin.after_or_equal' => 'La fecha de finalización debe ser posterior o igual a la fecha de inicio.',
+        
+        'salario_maximo.gte' => 'El salario máximo debe ser mayor o igual al salario mínimo.',
+        
+        'area_id.exists' => 'El área seleccionada no es válida.',
     ];
 
     public function updated($propertyName)
