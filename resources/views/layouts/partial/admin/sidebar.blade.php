@@ -15,17 +15,11 @@
             'route' => 'admin.users.index',
             'active' => request()->routeIs('admin.users.*'),
         ] : null,
-        [
-            'name' => 'Candidatos',
-            'icon' => 'fa-solid fa-users',
-            'route' => 'admin.candidato.index',
-            'active' => request()->routeIs('admin.candidato.*'),
-        ],
         auth()->user()->hasRole('admin') ? [
-        'name' => 'Bitácora',
-        'icon' => 'fa-solid fa-book',
-        'route' => 'admin.bitacora.index',
-        'active' => request()->routeIs('admin.bitacora.*'),
+            'name' => 'Bitácora',
+            'icon' => 'fa-solid fa-book',
+            'route' => 'admin.bitacora.index',
+            'active' => request()->routeIs('admin.bitacora.*'),
         ] : null,
         auth()->user()->hasRole('admin') ? [
             'name' => 'Permisos',
@@ -63,10 +57,11 @@
             'route' => 'admin.oferta.index',
             'active' => request()->routeIs('admin.oferta.*'),
         ],
-
-    ];
+    ], function ($item) {
+        return $item !== null;
+    });
 @endphp
-
+ 
 <aside id="logo-sidebar"
     class="fixed top-0 left-0 z-40 w-64 h-[100dvh] pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
     aria-label="Sidebar">
