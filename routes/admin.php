@@ -1,13 +1,16 @@
 <?php
 
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AreaController;
 use App\Http\Controllers\Admin\PermisoController;
+use App\Http\Controllers\Admin\OfertaController;
 use App\Http\Controllers\Admin\RolController;
 use App\Http\Controllers\Admin\CandidatoController;
 use App\Http\Controllers\Admin\ConocimientoController;
 use App\Http\Controllers\BitacoraController;
 use App\Http\Controllers\Reclutador\ReclutadorController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegistroController;
 
 Route::get('/', function () {
     return view('admin.dashboard');
@@ -38,7 +41,6 @@ Route::delete('permiso-destroy/{id}', [PermisoController::class, 'destroy'])->na
 
 //ruta Rol
 Route::resource('rol', RolController::class);
-
 //ruta Reclutador
 Route::get('reclutador', [ReclutadorController::class, 'index'])->name('reclutador.index');
 

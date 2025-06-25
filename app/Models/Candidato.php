@@ -16,5 +16,12 @@ class Candidato extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function historial(){
+        return $this->hasMany(Historial::class);
+    }
+
+    public function candidatoOferta(){
+        return $this->hasMany(CandidatoOferta::class);
+    }
     
 }
